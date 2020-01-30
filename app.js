@@ -3,40 +3,50 @@ const numbersContainer = document.querySelector('.numbers');
 const zero = document.querySelector('.zero');
 
 // operation display
-const firstNumber = document.querySelector('.first-number');
-const operatorSign = document.querySelector('.operator-sign');
-const secondNumber = document.querySelector('.second-number');
+let firstNumber = document.querySelector('.first-number');
+let operatorSign = document.querySelector('.operator-sign');
+let secondNumber = document.querySelector('.second-number');
 
 // operatos signs
 const operators = document.querySelector('.operators');
 
+// result
+const result = document.querySelector('.result');
+
+// restart
+const restart = document.querySelector('.restart');
+
+// operation functions
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+const multiply = (a, b) => a * b;
+const divide = (a, b) => a / b;
+
 // functions
-const firstNumberArray = [];
-const pushFirstNumber = (number) => {
+let operationFirstNumber = 0;
+const pushFirstNumber = number => {
     if (number.target === numbersContainer) {
         false;
     } else {
-        firstNumberArray.push(number.target.innerText);
+        operationFirstNumber += number.target.innerText;
     }
-    const firstArrayOfNumbers = parseInt(firstNumberArray.join(''));
-    firstNumber.innerText = firstArrayOfNumbers;
-    console.log(firstArrayOfNumbers);
-    numbersContainer.removeEventListener('click', pushSecondNumber);
-}
+    firstNumber.innerText = parseInt(operationFirstNumber, 10);
+    operators.addEventListener('click', addOperatorSign);
+};
 
-const secondNumberArray = [];
-const pushSecondNumber = (number) => {
+let operationSecondNumber = 0;
+const pushSecondNumber = number => {
+    operators.removeEventListener('click', addOperatorSign);
+    result.addEventListener('click', showResult);
     if (number.target === numbersContainer) {
         false;
     } else {
-        secondNumberArray.push(number.target.innerText);
+        operationSecondNumber += number.target.innerText;
     }
-    const secondArrayOfNumbers = parseInt(secondNumberArray.join(''));
-    secondNumber.innerText = secondArrayOfNumbers;
-    console.log(secondArrayOfNumbers);
+    secondNumber.innerText = parseInt(operationSecondNumber, 10);
 }
 
-const addOperatorSign = (sign) => {
+const addOperatorSign = sign => {
  if (sign.target === operators) {
         false;
     } else {
@@ -44,10 +54,44 @@ const addOperatorSign = (sign) => {
         numbersContainer.removeEventListener('click', pushFirstNumber);
         numbersContainer.addEventListener('click', pushSecondNumber);
     }
-    console.log(operatorSign);
+};
+
+let resultNumber = 0;
+const showResult = () => {
+    numbersContainer.removeEventListener('click', pushSecondNumber);
+    operationFirstNumber = parseInt(operationFirstNumber, 10);
+    operationSecondNumber = parseInt(operationSecondNumber, 10);
+
+    if(operatorSign.innerText === '+'){
+        resultNumber = add(operationFirstNumber, operationSecondNumber);
+    }
+    if(operatorSign.innerText === '-'){
+        resultNumber = subtract(operationFirstNumber, operationSecondNumber);
+    }
+    if(operatorSign.innerText === '*'){
+        resultNumber = multiply(operationFirstNumber, operationSecondNumber);
+    }
+    if(operatorSign.innerText === '/'){
+        resultNumber = divide(operationFirstNumber, operationSecondNumber);
+    }
+    display.innerText = resultNumber;
+};
+
+const restartCalculator = () => {
+    result.removeEventListener('click', showResult);
+    numbersContainer.removeEventListener('click', pushSecondNumber);
+    operators.removeEventListener('click', addOperatorSign);
+    numbersContainer.addEventListener('click', pushFirstNumber);
+    display.innerText = '';
+    firstNumber.innerText = '';
+    operationFirstNumber = 0;
+    secondNumber.innerText = '';
+    operationSecondNumber = 0;
+    operatorSign.innerText = '';
+    resultNumber = 0;
+    console.log(operatorSign.innerText);
 }
 
 // event listeners
 numbersContainer.addEventListener('click', pushFirstNumber);
-operators.addEventListener('click', addOperatorSign);
-
+restart.addEventListener('click', restartCalculator);
