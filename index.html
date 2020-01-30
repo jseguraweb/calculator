@@ -7,13 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
     <div class="case">
         <h1>Calculator</h1>
-        <div class="container display">XXX</div>
+        <div class="operation">
+            <div class="operation-button first-number"></div>
+            <div class="operation-button operator-sign"></div>
+            <div class="operation-button second-number"></div>
+        </div>
+        <div class="container display result"></div>
         <div class="container operators">
             <div class="operator-button add">+</div>
             <div class="operator-button subtract">-</div>
@@ -30,13 +36,14 @@
             <div class="number-button seven">7</div>
             <div class="number-button eight">8</div>
             <div class="number-button nine">9</div>
+            <div class="number-button zero">0</div>
         </div>
         <div class="container special-buttons">
             <div class="special-button restart">C</div>
-            <div class="number-button special-button zero">0</div>
             <div class="special-button result">=</div>
         </div>
     </div>
+    <script src="./app.js"></script>
 </body>
 
 </html>
