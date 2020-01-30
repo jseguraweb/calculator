@@ -21,6 +21,7 @@ const pushFirstNumber = (number) => {
     const firstArrayOfNumbers = parseInt(firstNumberArray.join(''));
     firstNumber.innerText = firstArrayOfNumbers;
     console.log(firstArrayOfNumbers);
+    numbersContainer.removeEventListener('click', pushSecondNumber);
 }
 
 const secondNumberArray = [];
@@ -35,12 +36,18 @@ const pushSecondNumber = (number) => {
     console.log(secondArrayOfNumbers);
 }
 
-// const addOperatorSign = (sign) => {
-
-//     operatorSign.innerText = ;
-// }
+const addOperatorSign = (sign) => {
+ if (sign.target === operators) {
+        false;
+    } else {
+        operatorSign.innerText = sign.target.innerText;
+        numbersContainer.removeEventListener('click', pushFirstNumber);
+        numbersContainer.addEventListener('click', pushSecondNumber);
+    }
+    console.log(operatorSign);
+}
 
 // event listeners
 numbersContainer.addEventListener('click', pushFirstNumber);
-// operators.addEventListener('click', addOperatorSign);
-numbersContainer.addEventListener('click', pushSecondNumber);
+operators.addEventListener('click', addOperatorSign);
+
