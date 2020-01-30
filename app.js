@@ -23,18 +23,18 @@ const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
 // functions
-let operationFirstNumber = 0;
+let operationFirstNumber = '';
 const pushFirstNumber = number => {
-    if (number.target === numbersContainer) {
+    if (number.target === numbersContainer || number.target === restart) {
         false;
     } else {
         operationFirstNumber += number.target.innerText;
     }
-    firstNumber.innerText = parseInt(operationFirstNumber, 10);
+    firstNumber.innerText = operationFirstNumber;
     operators.addEventListener('click', addOperatorSign);
 };
 
-let operationSecondNumber = 0;
+let operationSecondNumber = '';
 const pushSecondNumber = number => {
     operators.removeEventListener('click', addOperatorSign);
     result.addEventListener('click', showResult);
@@ -43,11 +43,11 @@ const pushSecondNumber = number => {
     } else {
         operationSecondNumber += number.target.innerText;
     }
-    secondNumber.innerText = parseInt(operationSecondNumber, 10);
+    secondNumber.innerText = operationSecondNumber;
 }
 
 const addOperatorSign = sign => {
- if (sign.target === operators) {
+    if (sign.target === operators) {
         false;
     } else {
         operatorSign.innerText = sign.target.innerText;
@@ -59,8 +59,8 @@ const addOperatorSign = sign => {
 let resultNumber = 0;
 const showResult = () => {
     numbersContainer.removeEventListener('click', pushSecondNumber);
-    operationFirstNumber = parseInt(operationFirstNumber, 10);
-    operationSecondNumber = parseInt(operationSecondNumber, 10);
+    operationFirstNumber = parseFloat(operationFirstNumber, 10);
+    operationSecondNumber = parseFloat(operationSecondNumber, 10);
 
     if(operatorSign.innerText === '+'){
         resultNumber = add(operationFirstNumber, operationSecondNumber);
@@ -83,14 +83,13 @@ const restartCalculator = () => {
     operators.removeEventListener('click', addOperatorSign);
     numbersContainer.addEventListener('click', pushFirstNumber);
     display.innerText = '';
+    operationFirstNumber = '';
     firstNumber.innerText = '';
-    operationFirstNumber = 0;
+    operationSecondNumber = '';
     secondNumber.innerText = '';
-    operationSecondNumber = 0;
     operatorSign.innerText = '';
     resultNumber = 0;
-    console.log(operatorSign.innerText);
-}
+};
 
 // event listeners
 numbersContainer.addEventListener('click', pushFirstNumber);
