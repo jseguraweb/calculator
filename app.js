@@ -22,6 +22,24 @@ const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
+// negative
+const negativeNumber = document.querySelector('.negative-number');
+let whichNumber = 0;
+const makeNegative = () => {
+    if(whichNumber === 0){
+        operationFirstNumber = parseFloat(operationFirstNumber, 10);
+        operationFirstNumber *= -1;
+        firstNumber.innerText = operationFirstNumber;
+    } else if (whichNumber === 1) {
+        operationSecondNumber = parseFloat(operationSecondNumber, 10);
+        operationSecondNumber *= -1;
+        secondNumber.innerText = operationSecondNumber;
+    } else if (whichNumber === 2) {
+        resultNumber = parseFloat(resultNumber, 10);
+        resultNumber *= -1;
+    }
+};
+
 // functions
 let operationFirstNumber = '';
 const pushFirstNumber = number => {
@@ -31,6 +49,7 @@ const pushFirstNumber = number => {
         operationFirstNumber += number.target.innerText;
     }
     firstNumber.innerText = operationFirstNumber;
+    negativeNumber.addEventListener('click', makeNegative);
     operators.addEventListener('click', addOperatorSign);
 };
 
@@ -44,9 +63,11 @@ const pushSecondNumber = number => {
         operationSecondNumber += number.target.innerText;
     }
     secondNumber.innerText = operationSecondNumber;
+    negativeNumber.addEventListener('click', makeNegative);
 }
 
 const addOperatorSign = sign => {
+    negativeNumber.removeEventListener('click', makeNegative);
     if (sign.target === operators) {
         false;
     } else if (display.innerText) {
@@ -63,6 +84,7 @@ const addOperatorSign = sign => {
         numbersContainer.removeEventListener('click', pushFirstNumber);
         numbersContainer.addEventListener('click', pushSecondNumber);
     }
+    whichNumber = 1;
 };
 
 let resultNumber = 0;
@@ -83,7 +105,9 @@ const showResult = () => {
     if(operatorSign.innerText === '/'){
         resultNumber = divide(operationFirstNumber, operationSecondNumber);
     }
+    whichNumber = 1;
     display.innerText = resultNumber;
+    negativeNumber.addEventListener('click', makeNegative);
     operators.addEventListener('click', addOperatorSign);
 };
 
