@@ -42,13 +42,6 @@ const makeNegative = () => {
         } else {
             false;
         }
-    } else if (whichNumber === 2) {
-        resultNumber = parseFloat(resultNumber, 10);
-        if (resultNumber) {
-            resultNumber *= -1;
-        } else {
-            false;
-        }
     }
 };
 
@@ -130,13 +123,15 @@ const restartCalculator = () => {
     numbersContainer.removeEventListener('click', pushSecondNumber);
     operators.removeEventListener('click', addOperatorSign);
     numbersContainer.addEventListener('click', pushFirstNumber);
-    display.innerText = '';
+    negativeNumber.addEventListener('click', makeNegative);
+    whichNumber = 0;
+    resultNumber = 0;
     operationFirstNumber = '';
-    firstNumber.innerText = '';
     operationSecondNumber = '';
+    display.innerText = '';
+    firstNumber.innerText = '';
     secondNumber.innerText = '';
     operatorSign.innerText = '';
-    resultNumber = 0;
 };
 
 // event listeners
