@@ -49,6 +49,15 @@ const pushSecondNumber = number => {
 const addOperatorSign = sign => {
     if (sign.target === operators) {
         false;
+    } else if (display.innerText) {
+        operationSecondNumber = '';
+        secondNumber.innerText = '';
+        operationFirstNumber = display.innerText;
+        firstNumber.innerText = display.innerText;
+        display.innerText = '';
+        resultNumber = 0;
+        operatorSign.innerText = sign.target.innerText;
+        numbersContainer.addEventListener('click', pushSecondNumber);
     } else {
         operatorSign.innerText = sign.target.innerText;
         numbersContainer.removeEventListener('click', pushFirstNumber);
@@ -75,6 +84,7 @@ const showResult = () => {
         resultNumber = divide(operationFirstNumber, operationSecondNumber);
     }
     display.innerText = resultNumber;
+    operators.addEventListener('click', addOperatorSign);
 };
 
 const restartCalculator = () => {
