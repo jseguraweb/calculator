@@ -96,14 +96,16 @@ const addOperatorSign = sign => {
         numbersContainer.removeEventListener('click', pushFirstNumber);
         numbersContainer.addEventListener('click', pushSecondNumber);
     }
+    operationFirstNumber = parseFloat(operationFirstNumber, 10);
+    firstNumber.innerText = operationFirstNumber;
     whichNumber = 1;
 };
 
 let resultNumber = 0;
 const showResult = () => {
     numbersContainer.removeEventListener('click', pushSecondNumber);
-    operationFirstNumber = parseFloat(operationFirstNumber, 10);
     operationSecondNumber = parseFloat(operationSecondNumber, 10);
+    secondNumber.innerText = operationSecondNumber;
 
     if(operatorSign.innerText === '+'){
         resultNumber = add(operationFirstNumber, operationSecondNumber);
