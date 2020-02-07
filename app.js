@@ -28,15 +28,27 @@ let whichNumber = 0;
 const makeNegative = () => {
     if(whichNumber === 0){
         operationFirstNumber = parseFloat(operationFirstNumber, 10);
-        operationFirstNumber *= -1;
-        firstNumber.innerText = operationFirstNumber;
+        if (operationFirstNumber) {
+            operationFirstNumber *= -1;
+            firstNumber.innerText = operationFirstNumber;
+        } else {
+            false;
+        }
     } else if (whichNumber === 1) {
         operationSecondNumber = parseFloat(operationSecondNumber, 10);
-        operationSecondNumber *= -1;
-        secondNumber.innerText = operationSecondNumber;
+        if (operationSecondNumber) {
+            operationSecondNumber *= -1;
+            secondNumber.innerText = operationSecondNumber;
+        } else {
+            false;
+        }
     } else if (whichNumber === 2) {
         resultNumber = parseFloat(resultNumber, 10);
-        resultNumber *= -1;
+        if (resultNumber) {
+            resultNumber *= -1;
+        } else {
+            false;
+        }
     }
 };
 
@@ -107,7 +119,7 @@ const showResult = () => {
     }
     whichNumber = 1;
     display.innerText = resultNumber;
-    negativeNumber.addEventListener('click', makeNegative);
+    negativeNumber.removeEventListener('click', makeNegative);
     operators.addEventListener('click', addOperatorSign);
 };
 
