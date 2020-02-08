@@ -1,0 +1,26 @@
+{
+  "name": "10-browser-calculator",
+  "version": "1.0.0",
+  "description": "I use my knowledge in JavaScript, HTML and CSS to create a functional calculator",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-css": "dart-sass --watch scss/main.scss build/style.css --style compressed",
+    "prefix": "postcss *.css --use autoprefixer -d build/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jseguraweb/calculator.git"
+  },
+  "author": "Jaime Segura",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jseguraweb/calculator/issues"
+  },
+  "homepage": "https://github.com/jseguraweb/calculator#readme",
+  "devDependencies": {
+    "autoprefixer": "^9.7.4",
+    "dart-sass": "^1.25.0",
+    "postcss-cli": "^7.1.0"
+  }
+}

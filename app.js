@@ -7,7 +7,7 @@ let firstNumber = document.querySelector('.first-number');
 let operatorSign = document.querySelector('.operator-sign');
 let secondNumber = document.querySelector('.second-number');
 
-// operatos signs
+// operators signs
 const operators = document.querySelector('.operators');
 
 // result
@@ -122,8 +122,8 @@ const restartCalculator = () => {
     result.removeEventListener('click', showResult);
     numbersContainer.removeEventListener('click', pushSecondNumber);
     operators.removeEventListener('click', addOperatorSign);
+    negativeNumber.removeEventListener('click', makeNegative);
     numbersContainer.addEventListener('click', pushFirstNumber);
-    negativeNumber.addEventListener('click', makeNegative);
     whichNumber = 0;
     resultNumber = 0;
     operationFirstNumber = '';
