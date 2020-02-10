@@ -69,7 +69,7 @@ const pushSecondNumber = number => {
     }
     secondNumber.innerText = operationSecondNumber;
     negativeNumber.addEventListener('click', makeNegative);
-}
+};
 
 const addOperatorSign = sign => {
     negativeNumber.removeEventListener('click', makeNegative);
@@ -84,10 +84,13 @@ const addOperatorSign = sign => {
         resultNumber = 0;
         operatorSign.innerText = sign.target.innerText;
         numbersContainer.addEventListener('click', pushSecondNumber);
+        window.addEventListener('keydown', keySecondNumber);
     } else {
         operatorSign.innerText = sign.target.innerText;
         numbersContainer.removeEventListener('click', pushFirstNumber);
+        window.removeEventListener('keydown', keyFirstNumber);
         numbersContainer.addEventListener('click', pushSecondNumber);
+        window.addEventListener('keydown', keySecondNumber);
     }
     operationFirstNumber = parseFloat(operationFirstNumber, 10);
     firstNumber.innerText = operationFirstNumber;
@@ -97,6 +100,7 @@ const addOperatorSign = sign => {
 let resultNumber = 0;
 const showResult = () => {
     numbersContainer.removeEventListener('click', pushSecondNumber);
+    window.removeEventListener('keydown', keySecondNumber);
     operationSecondNumber = parseFloat(operationSecondNumber, 10);
     secondNumber.innerText = operationSecondNumber;
 
@@ -121,9 +125,11 @@ const showResult = () => {
 const restartCalculator = () => {
     result.removeEventListener('click', showResult);
     numbersContainer.removeEventListener('click', pushSecondNumber);
+    window.removeEventListener('keydown', keyFirstNumber);
     operators.removeEventListener('click', addOperatorSign);
     negativeNumber.removeEventListener('click', makeNegative);
     numbersContainer.addEventListener('click', pushFirstNumber);
+    window.addEventListener('keydown', keyFirstNumber);
     whichNumber = 0;
     resultNumber = 0;
     operationFirstNumber = '';
@@ -134,6 +140,144 @@ const restartCalculator = () => {
     operatorSign.innerText = '';
 };
 
+// numbers
+let key;
+const keyFirstNumber = keyStroke => {
+    negativeNumber.addEventListener('click', makeNegative);
+    operators.addEventListener('click', addOperatorSign);
+    switch (keyStroke.keyCode) {
+        case 48:
+            key = '0';
+            operationFirstNumber += key;
+            firstNumber.innerText = operationFirstNumber;
+            break;
+        case 49:
+            key = '1';
+            operationFirstNumber += key;
+            firstNumber.innerText = operationFirstNumber;
+            break;
+        case 50:
+            key = '2';
+            operationFirstNumber += key;
+            firstNumber.innerText = operationFirstNumber;
+            break;
+        case 51:
+            key = '3';
+            operationFirstNumber += key;
+            firstNumber.innerText = operationFirstNumber;
+            break;
+        case 52:
+            key = '4';
+            operationFirstNumber += key;
+            firstNumber.innerText = operationFirstNumber;
+            break;
+        case 53:
+            key = '5';
+            operationFirstNumber += key;
+            firstNumber.innerText = operationFirstNumber;
+            break;
+        case 54:
+            key = '6';
+            operationFirstNumber += key;
+            firstNumber.innerText = operationFirstNumber;
+            break;
+        case 55:
+            key = '7';
+            operationFirstNumber += key;
+            firstNumber.innerText = operationFirstNumber;
+            break;
+        case 56:
+            key = '8';
+            operationFirstNumber += key;
+            firstNumber.innerText = operationFirstNumber;
+            break;
+        case 57:
+            key = '9';
+            operationFirstNumber += key;
+            firstNumber.innerText = operationFirstNumber;
+            break;
+        case 190:
+            key = '.';
+            operationFirstNumber += key;
+            firstNumber.innerText = operationFirstNumber;
+            break;
+        case 13:
+            showResult();
+            break;
+        default:
+            key = '';
+    }
+};
+
+const keySecondNumber = keyStroke => {
+    negativeNumber.addEventListener('click', makeNegative);
+    operators.removeEventListener('click', addOperatorSign);
+    result.addEventListener('click', showResult);
+    switch (keyStroke.keyCode) {
+        case 48:
+            key = '0';
+            operationSecondNumber += key;
+            secondNumber.innerText = operationSecondNumber;
+            break;
+        case 49:
+            key = '1';
+            operationSecondNumber += key;
+            secondNumber.innerText = operationSecondNumber;
+            break;
+        case 50:
+            key = '2';
+            operationSecondNumber += key;
+            secondNumber.innerText = operationSecondNumber;
+            break;
+        case 51:
+            key = '3';
+            operationSecondNumber += key;
+            secondNumber.innerText = operationSecondNumber;
+            break;
+        case 52:
+            key = '4';
+            operationSecondNumber += key;
+            secondNumber.innerText = operationSecondNumber;
+            break;
+        case 53:
+            key = '5';
+            operationSecondNumber += key;
+            secondNumber.innerText = operationSecondNumber;
+            break;
+        case 54:
+            key = '6';
+            operationSecondNumber += key;
+            secondNumber.innerText = operationSecondNumber;
+            break;
+        case 55:
+            key = '7';
+            operationSecondNumber += key;
+            secondNumber.innerText = operationSecondNumber;
+            break;
+        case 56:
+            key = '8';
+            operationSecondNumber += key;
+            secondNumber.innerText = operationSecondNumber;
+            break;
+        case 57:
+            key = '9';
+            operationSecondNumber += key;
+            secondNumber.innerText = operationSecondNumber;
+            break;
+        case 190:
+            key = '.';
+            operationSecondNumber += key;
+            secondNumber.innerText = operationSecondNumber;
+            break;
+        case 13:
+            showResult();
+            break;
+        default:
+            key = '';
+    }
+};
+
 // event listeners
 numbersContainer.addEventListener('click', pushFirstNumber);
 restart.addEventListener('click', restartCalculator);
+window.addEventListener('keydown', keyFirstNumber);
